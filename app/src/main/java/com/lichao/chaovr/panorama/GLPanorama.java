@@ -1,4 +1,4 @@
-package com.lichao.chaovr.Panorama;
+package com.lichao.chaovr.panorama;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -73,14 +73,24 @@ public class GLPanorama extends RelativeLayout implements SensorEventListener {
         });
     }
 
-
+    /**
+     * 初始化传感器
+     */
     private void initSensor() {
         mSensorManager = (SensorManager) mContext.getSystemService(Context.SENSOR_SERVICE);
         mGyroscopeSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
+        //注册陀螺仪传感器 输出的时间间隔类型：SENSOR_DELAY_FASTEST(0微秒) SENSOR_DELAY_GAME(20000微秒)
         mSensorManager.registerListener(this, mGyroscopeSensor,
                 SensorManager.SENSOR_DELAY_FASTEST);
     }
 
+    /**
+     * 获得传感器数据
+     * 从 x、y、z 轴的正向位置观看处于原始方位的设备，如果设备逆时针旋转，将会收到正值；
+     * 否则，为负值得到两次检测到手机旋转的时间差（纳秒），并将其转化为秒 。
+     * 将手机在各个轴上的旋转角度相加，即可得到当前位置相对于初始位置的旋转弧度，将弧度转化为角度。
+     * @param sensorEvent
+     */
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
         if (sensorEvent.sensor.getType() == Sensor.TYPE_GYROSCOPE) {
@@ -116,14 +126,16 @@ public class GLPanorama extends RelativeLayout implements SensorEventListener {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case 101:
+                    //设置填充球的Y，X的角度
                     Sensordt info = (Sensordt) msg.obj;
                     float y = info.getSensorY();
                     float x = info.getSensorX();
                     float dy = y - mPreviousY;// 计算触控笔Y位移
                     float dx = x - mPreviousX;// 计算触控笔X位移
+                    //2.0也就是陀螺仪传过来的值乘以得出偏移的角度，数值越大，每次偏移更快
                     mBall.yAngle += dx * 2.0f;// 设置填充椭圆绕y轴旋转的角度
                     mBall.xAngle += dy * 0.5f;// 设置填充椭圆绕x轴旋转的角度
-                    if (mBall.xAngle < -50f) {
+                    if (mBall.xAngle < -50f) {// 设置了上下只能偏移50f
                         mBall.xAngle = -50f;
                     } else if (mBall.xAngle > 50f) {
                         mBall.xAngle = 50f;
@@ -139,6 +151,11 @@ public class GLPanorama extends RelativeLayout implements SensorEventListener {
         }
     };
 
+    /**
+     * 加入手势操控，拖动图片转动
+     * @param event 手势事件
+     * @return
+     */
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         mSensorManager.unregisterListener(this);
@@ -159,6 +176,7 @@ public class GLPanorama extends RelativeLayout implements SensorEventListener {
                 rotate();
                 break;
             case MotionEvent.ACTION_UP:
+                // 当手指点击屏幕的时候要关闭陀螺仪传感器的监听不然会引起冲突。当手指离开屏幕，重新监听陀螺仪传感器
                 mSensorManager.registerListener(this, mGyroscopeSensor,
                         SensorManager.SENSOR_DELAY_FASTEST);
                 break;
@@ -183,6 +201,7 @@ public class GLPanorama extends RelativeLayout implements SensorEventListener {
      * 小图标旋转，跳跃
      */
     private void rotate() {
+        // 为指示器加入动画跟随全景图一起转
         RotateAnimation anim = new RotateAnimation(predegrees, -mBall.yAngle,
                 Animation.RELATIVE_TO_SELF, 0.5f,
                 Animation.RELATIVE_TO_SELF, 0.5f);
@@ -223,8 +242,9 @@ public class GLPanorama extends RelativeLayout implements SensorEventListener {
 
     private Handler mHandlers = new Handler();
     int yy = 0;
+
     /**
-     * 还原位置
+     * 点击指示器还原起始位置
      */
     private void zero() {
         yy = (int) ((mBall.yAngle - 90f) / 10f);

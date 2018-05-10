@@ -1,4 +1,4 @@
-package com.lichao.chaovr.Panorama;
+package com.lichao.chaovr.panorama;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -88,7 +88,8 @@ public class OGLUtils {
     /**
      * 全景图片上的点与球上面选取的点一一对应起来
      * 注意：球的坐标是3维坐标，图片的坐标是2维坐标
-     * @param bitmap
+     * 纹理和图片绑定绘制到屏幕上
+     * @param bitmap 输入的全景图 w:h = 2:1
      * @return
      */
     protected static int bindTexture(Bitmap bitmap) {

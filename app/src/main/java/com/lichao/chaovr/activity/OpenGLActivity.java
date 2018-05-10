@@ -2,7 +2,7 @@ package com.lichao.chaovr.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import com.lichao.chaovr.Panorama.GLPanorama;
+import com.lichao.chaovr.panorama.GLPanorama;
 import com.lichao.chaovr.R;
 
 /**

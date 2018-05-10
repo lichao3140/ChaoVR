@@ -3,7 +3,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-   <com.lichao.chaovr.Panorama.IViews
+   <com.lichao.chaovr.panorama.IViews
         android:id="@+id/mIViews"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

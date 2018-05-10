@@ -1,4 +1,4 @@
-package com.lichao.chaovr.Panorama;
+package com.lichao.chaovr.panorama;
 
 import android.content.Context;
 import android.opengl.GLES20;

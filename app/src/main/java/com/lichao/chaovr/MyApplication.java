@@ -31,6 +31,6 @@ public class MyApplication extends Application {
             }
         };
         //x5内核初始化接口
-        //QbSdk.initX5Environment(getApplicationContext(),  cb);
+        QbSdk.initX5Environment(getApplicationContext(),  cb);
     }
 }

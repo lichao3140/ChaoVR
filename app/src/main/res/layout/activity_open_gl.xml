@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".activity.OpenGLActivity">
 
-    <com.lichao.chaovr.Panorama.GLPanorama
+    <com.lichao.chaovr.panorama.GLPanorama
         android:id="@+id/mGLPanorama"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

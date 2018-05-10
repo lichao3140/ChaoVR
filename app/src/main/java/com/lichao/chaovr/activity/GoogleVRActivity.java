@@ -49,9 +49,9 @@ public class GoogleVRActivity extends AppCompatActivity {
 
         vrPanoramaView = findViewById(R.id.vrPanoramaView);
         vrPanoramaView.setTouchTrackingEnabled(true);
-        vrPanoramaView.setFullscreenButtonEnabled(true);
-        vrPanoramaView.setInfoButtonEnabled(false);
-        vrPanoramaView.setStereoModeButtonEnabled(false);
+        vrPanoramaView.setFullscreenButtonEnabled(true); //显示全屏模式按钮
+        vrPanoramaView.setInfoButtonEnabled(false); //设置隐藏最左边信息的按钮
+        vrPanoramaView.setStereoModeButtonEnabled(false); //设置隐藏立体模型的按钮
         currPosition = new Random().nextInt(ModelUtil.getPanoramaImageList().size());
         PanoramaImageModel model = ModelUtil.getPanoramaImageList().get(currPosition);
         loadPanoramaImage(model);
@@ -83,8 +83,12 @@ public class GoogleVRActivity extends AppCompatActivity {
     private void loadPanoramaImage(Bitmap bitmap) {
         if (bitmap == null) return;
         VrPanoramaView.Options options = new VrPanoramaView.Options();
+        //输入图片类型
         options.inputType = VrPanoramaView.Options.TYPE_MONO;
+        //加载本地的图片源
         vrPanoramaView.loadImageFromBitmap(bitmap, options);
+        //设置网络图片源
+        //vrPanoramaView.loadImageFromByteArray();
     }
 
     private Bitmap getBitmapFromAssets(String fileName) {
