@@ -10,7 +10,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/c9"
         app:layout_scrollFlags="scroll|enterAlways">
 
         <TextView
@@ -23,7 +23,7 @@
             android:textSize="22sp"/>
     </RelativeLayout>
 
-    <com.lichao.chaovr.about.WebViewWrapper
+    <com.lichao.chaovr.activity.WebViewWrapper
         android:id="@+id/webViewWrapper"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

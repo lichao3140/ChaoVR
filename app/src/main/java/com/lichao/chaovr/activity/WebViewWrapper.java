@@ -1,4 +1,4 @@
-package com.lichao.chaovr.about;
+package com.lichao.chaovr.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

@@ -1,26 +1,29 @@
-package com.lichao.chaovr;
+package com.lichao.chaovr.activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.google.vr.sdk.widgets.pano.VrPanoramaView;
-import com.lichao.chaovr.about.AboutActivity;
+import com.lichao.chaovr.R;
+import com.lichao.chaovr.activity.AboutActivity;
 import com.lichao.chaovr.adapter.PanoramaImageAdapter;
 import com.lichao.chaovr.model.ModelUtil;
 import com.lichao.chaovr.model.PanoramaImageModel;
 import com.lichao.chaovr.utils.ImageUtil;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Random;
 
-public class MainActivity extends AppCompatActivity {
+public class GoogleVRActivity extends AppCompatActivity {
 
     private ImageView ivMine;
     private TextView tvTitle;
@@ -33,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_google_vr);
 
         initView();
         initListener();
@@ -109,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        vrPanoramaView.shutdown();
         super.onDestroy();
+        vrPanoramaView.shutdown();
     }
 }
