@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
-
 import com.lichao.chaovr.R;
 
 public class AboutActivity extends AppCompatActivity {

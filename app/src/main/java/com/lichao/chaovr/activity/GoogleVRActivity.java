@@ -64,7 +64,7 @@ public class GoogleVRActivity extends AppCompatActivity {
 
     private void initListener() {
         ivMine.setOnClickListener(v -> {
-            startActivity(new Intent(this, AboutActivity.class));
+            //startActivity(new Intent(this, AboutActivity.class));
         });
 
         mAdapter.setOnItemClickListener((adapter, view, position) -> {

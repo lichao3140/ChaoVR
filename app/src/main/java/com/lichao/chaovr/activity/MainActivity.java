@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
 //                .apiToken("de43fcf07a3eb6d0fb63eaaad9e2cf71")
 //                .appId(YOUR_FIR_APP_ID)
 //                .checkVersion();
-
     }
 
     @OnClick({R.id.bt_google, R.id.bt_js, R.id.bt_opengl})
@@ -39,10 +38,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this, GoogleVRActivity.class));
                 break;
             case R.id.bt_js:
-
+                startActivity(new Intent(this, JSVRActivity.class));
                 break;
             case R.id.bt_opengl:
-
+                startActivity(new Intent(this, OpenGLActivity.class));
                 break;
         }
     }
